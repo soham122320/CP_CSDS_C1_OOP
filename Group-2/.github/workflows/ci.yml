@@ -1,0 +1,26 @@
+name: Engine and website
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Native C++ tests
+        run: cmake -S cpp-engine -B build/native && cmake --build build/native -j2 && ctest --test-dir build/native --output-on-failure
+      - uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: "6.0.9"
+      - run: ./scripts/build-wasm.sh
+      - run: npm ci && npm run test:unit && npm run build && npm run test:wasm
+        working-directory: frontend
+      - run: npx playwright install --with-deps chromium && npm run test:e2e
+        working-directory: frontend
+      - uses: actions/upload-artifact@v4
+        with:
+          name: compiled-website
+          path: frontend/dist
