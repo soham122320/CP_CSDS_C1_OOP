@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <title>SHARD-4: BLACKOUT PROTOCOL</title>
+    <meta name="description" content="4-Player Tactical Co-Op Sci-Fi Shooter & Mystery" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="theme-color" content="#030712" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+      * {
+        touch-action: manipulation;
+        -webkit-touch-callout: none;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #030712;
+        color: #f3f4f6;
+        font-family: 'Chakra Petch', sans-serif;
+      }
+      canvas {
+        touch-action: none;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-950 text-gray-100 antialiased select-none overflow-hidden">
+    <div id="root" class="w-full h-full min-h-screen"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
